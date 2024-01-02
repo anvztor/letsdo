@@ -1,4 +1,5 @@
-import { Fab, IconButton, Snackbar, DialogTitle, Tabs, Tab, ListSubheader } from '@mui/material'
+import { CssBaseline, Fab, IconButton, Snackbar, DialogTitle, Grid, Tabs, Tab, ListSubheader } from '@mui/material'
+import { tabsClasses } from '@mui/material/Tabs'
 import { Box, Container } from '@mui/system'
 import React, { useEffect } from 'react'
 import AddIcon from '@mui/icons-material/Add';
@@ -14,36 +15,44 @@ import AddDialogForm from './AddDialogForm';
 export default function Square() {
 
   const categories = [
-    "SPORT",
-    "COOKING",
-    "STUDYING",
-    "OUTSIDE",
-    "CIRCUITS",
-    "WOODWORK",
-    "GAME"
+    "sport",
+    "cook",
+    "study",
+    "DIYs",
+    "wood",
+    "go out",
+    "game",
+    "favour"
   ]
   return (
     <Container>
-      <Box style={{ cursor: 'move', display:'flex' }}>
-        <img src={require("../resources/letsdoit.png")} alt="text" />
-        <Tabs
-          // value={value}
-          // onChange={handleChange}
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
-          orientation="vertical"
+      <CssBaseline/>
+      <Grid container spacing={2}>
+        <Box 
+          sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
         >
-          <Tab label="SPORT" />
-          <Tab label="COOKING" />
-          <Tab label="STUDYING" />
-          <Tab label="OUTSIDE" />
-          <Tab label="CIRCUITS" />
-          <Tab label="WOODWORK" />
-          <Tab label="GAME" />
-          <Tab label="Favourite" />
-        </Tabs>
-      </Box>
+          <img src={require("../resources/letsdoit.png")} alt="text" />
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            // value={value}
+            // onChange={handleChange}
+            scrollButtons
+            allowScrollButtonsMobile
+            aria-label="Vertical tabs example"
+            sx={{ borderLeft: 1, borderColor: 'divider' }}
+          >
+            <Tab label="sport" />
+            <Tab label="cook" />
+            <Tab label="study" />
+            <Tab label="DIYs" />
+            <Tab label="wood" />
+            <Tab label="go out" />
+            <Tab label="game" />
+            <Tab label="favour" />
+          </Tabs>
+        </Box>
+      </Grid>
       <Box style={{ cursor: 'move', display:'flex' }}>
         <ListSubheader sx={{ bgcolor: 'background.paper' }}>
           Tasks to Be Done
@@ -59,8 +68,6 @@ export default function Square() {
           People to Be Followed
         </ListSubheader>
       </Box>
-
-      
     </Container>
   )
 }
