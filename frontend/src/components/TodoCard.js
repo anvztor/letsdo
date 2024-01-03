@@ -4,8 +4,9 @@ import { red } from '@mui/material/colors'
 import DeleteIcon from '@mui/icons-material/Delete'
 import UpdateIcon from '@mui/icons-material/Update';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
-export default function TodoCard({id, title, body, handleView, handleDelete, handleUpdate}) {
+export default function TodoCard({id, title, body, handleCount, handleView, handleDelete, handleUpdate}) {
     return (
         <Card sx={{width:300, height:300, mb:2, mr:2}} elevation={10}>
               <CardHeader
@@ -37,6 +38,11 @@ export default function TodoCard({id, title, body, handleView, handleDelete, han
                   <Tooltip title="View">
                     <IconButton aria-label='View todo' onClick={(e) => handleView(e, id)}>
                       <VisibilityIcon/>
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Count">
+                    <IconButton aria-label='Count' onClick={(e) => handleCount(e, id)}>
+                      <SkipNextIcon/>
                     </IconButton>
                   </Tooltip>
                   

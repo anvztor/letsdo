@@ -21,7 +21,7 @@ function TodoAvatar(props) {
         }}
       >
         <Typography variant="caption" component="div" color="text.secondary">
-          {`${Math.round(props.value)}%`}
+          {`${Math.round(props.id)}`}
         </Typography>
       </Box>
     </Box>
@@ -37,17 +37,15 @@ TodoAvatar.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function CircularWithValueLabel() {
+export default function CircularWithValueLabel({id, title, body}) {
   const [progress, setProgress] = React.useState(10);
-
+  
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 25));
-    }, 1600);
-    return () => {
-      clearInterval(timer);
-    };
+    const quest = JSON.parse(title)
+    const completeness = parseInt(quest.args[0].score) / parseInt(quest.args[0].target) * 100
+    const completerate = (completeness > 100) ? 100 : completeness
+    setProgress(completerate);
   }, []);
 
-  return <TodoAvatar value={progress} />;
+  return <TodoAvatar id={id} title={title} body={body} value={progress} />;
 }

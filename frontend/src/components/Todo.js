@@ -65,6 +65,17 @@ export default function Todo() {
         })
   }
 
+  const submitTodoCount = (e, id) => {
+    e.preventDefault()
+    console.log(`SubmitTodo Count ${id}`)
+    const found = state.todos.filter((a) => a.id === id)[0]
+    // Parse the title , let score count++, and fill back
+    const quest = JSON.parse(found.title)
+    quest.args[0].score++
+    console.log(quest)
+    updateTodo(id, JSON.stringify(quest), found.body)
+  }
+
   const handleView = (e, id) => {
     e.preventDefault()
     console.log(`View ${id}`)
@@ -245,10 +256,10 @@ export default function Todo() {
 
   return (
     <Container>
-      <Box>
+      <Box sx={{mt: 2, display:'flex', flexWrap:'wrap'}}>
         {
           state.todos.map( (todo) => (
-            <TodoAvatar value={25} />
+            <TodoAvatar key={todo.id} id={todo.id} title={todo.title} body={todo.body}/>
           ))
         }
       </Box>
@@ -259,7 +270,7 @@ export default function Todo() {
       <Box sx={{mt: 2, display:'flex', flexWrap:'wrap'}}>
         {
           state.todos.map( (todo) => (
-            <TodoCard key={todo.id} id={todo.id} title={todo.title} body={todo.body} handleView={handleView} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
+            <TodoCard key={todo.id} id={todo.id} title={todo.title} body={todo.body} handleCount={submitTodoCount} handleView={handleView} handleDelete={handleDelete} handleUpdate={handleUpdate}/>
           ))
         }
       </Box>
