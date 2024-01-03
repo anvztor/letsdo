@@ -31,7 +31,6 @@ export default function Profile({
 
   useEffect(() => {
     fetchUser()
-    fetchTodos()
   }, [])
   const fetchUser = () => {
     console.log('start getting user info by id', state.id)
@@ -58,37 +57,6 @@ export default function Profile({
               ...state,
               errorMsg: error.response.data.message
             })
-        })
-  }
-
-  const fetchTodos = () => {
-    console.log('start fetching fetchTodos info')
-    axios.defaults.headers.common = {Authorization: `Bearer ${state.token}`}
-    let options = {
-        url : `http://127.0.0.1:3100/apis/v1/todos/${state.userId}`,
-        method: 'get'
-    }
-    axios(options)
-        .then((response) => {
-            let jsonTodos = response.data.data
-            //console.log(jsonTodos)
-            let todos = []
-            for(let key in jsonTodos) {
-                let value = jsonTodos[key]
-                todos.push({id: value.id, title: value.title, body:value.body})
-            }
-            setState({
-              ...state,
-              todos: todos
-              }
-            )
-        })
-        .catch((error) => {
-          setState({
-            ...state,
-            error: error.response.data.message,
-            snackBarOpen: true
-          })
         })
   }
 
