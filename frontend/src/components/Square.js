@@ -1,4 +1,4 @@
-import { CssBaseline, Fab, IconButton, Snackbar, DialogTitle, Grid, Tabs, Tab, ListSubheader } from '@mui/material'
+import { CssBaseline, Fab, IconButton, Snackbar, DialogTitle, Stack, Grid, Tabs, Tab, ListSubheader } from '@mui/material'
 import { tabsClasses } from '@mui/material/Tabs'
 import { Box, Container } from '@mui/system'
 import React, { useEffect } from 'react'
@@ -11,18 +11,19 @@ import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 import UpdateDialogForm from './UpdateDialogForm';
 import AddDialogForm from './AddDialogForm';
+import ProfileAvatar from './ProfileAvatar';
 
 export default function Square() {
 
   const categories = [
-    "sport",
-    "cook",
-    "study",
-    "DIYs",
-    "wood",
-    "go out",
-    "game",
-    "favour"
+    'SPORT',
+    'COOK',
+    'STUDY',
+    'DIYS',
+    'WOOD',
+    'GOOUT',
+    'GAME',
+    'FAVOUR'
   ]
   return (
     <Container>
@@ -42,20 +43,17 @@ export default function Square() {
             aria-label="Vertical tabs example"
             sx={{ borderLeft: 1, borderColor: 'divider' }}
           >
-            <Tab label="sport" />
-            <Tab label="cook" />
-            <Tab label="study" />
-            <Tab label="DIYs" />
-            <Tab label="wood" />
-            <Tab label="go out" />
-            <Tab label="game" />
-            <Tab label="favour" />
+            {
+              categories.map( (cata) => (
+                <Tab label={cata} />
+              ))
+            }
           </Tabs>
         </Box>
       </Grid>
       <Box style={{ cursor: 'move', display:'flex' }}>
         <ListSubheader sx={{ bgcolor: 'background.paper' }}>
-          Tasks to Be Done
+          Quests to Be Done
         </ListSubheader>
       </Box>
       <Box style={{ cursor: 'move', display:'flex' }}>
@@ -63,11 +61,16 @@ export default function Square() {
           Chips to Be Choosen
         </ListSubheader>
       </Box>
-      <Box style={{ cursor: 'move', display:'flex' }}>
+      <Stack style={{ cursor: 'move', display:'flex' }}>
         <ListSubheader sx={{ bgcolor: 'background.paper' }}>
           People to Be Followed
         </ListSubheader>
-      </Box>
+        <Box style={{ cursor: 'move', display:'flex' }}>
+          <ProfileAvatar name={'justor95'}/>
+          <ProfileAvatar name={'tenony'}/>
+          <ProfileAvatar name={'jenessa'}/>
+        </Box>
+      </Stack>
     </Container>
   )
 }
