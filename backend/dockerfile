@@ -1,0 +1,21 @@
+FROM node:lts-bullseye-slim
+
+RUN apt-get update || : && apt-get install -y \
+    python \
+    build-essential
+
+RUN mkdir -p /home/letsdo
+
+COPY . /home/letsdo
+
+WORKDIR /home/letsdo
+
+RUN yarn install
+
+ENV HOST 0.0.0.0
+ENV PORT 3100
+
+EXPOSE 3100
+
+CMD ["npm", "start"]
+
