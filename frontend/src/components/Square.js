@@ -14,7 +14,6 @@ import AddDialogForm from './AddDialogForm';
 import ProfileAvatar from './ProfileAvatar';
 
 export default function Square() {
-
   const categories = [
     'SPORT',
     'COOK',
@@ -25,6 +24,13 @@ export default function Square() {
     'GAME',
     'FAVOUR'
   ]
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  
   return (
     <Container>
       <CssBaseline/>
@@ -32,12 +38,12 @@ export default function Square() {
         <Box 
           sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
         >
-          <img src={require("../resources/letsdoit.png")} alt="text" />
+          <img src={require("../resources/letsdoit.png")} alt="letsdoit" />
           <Tabs
             orientation="vertical"
             variant="scrollable"
-            // value={value}
-            // onChange={handleChange}
+            value={value}
+            onChange={handleChange}
             scrollButtons
             allowScrollButtonsMobile
             aria-label="Vertical tabs example"
@@ -45,7 +51,7 @@ export default function Square() {
           >
             {
               categories.map( (cata) => (
-                <Tab label={cata} />
+                <Tab key={cata} label={cata} />
               ))
             }
           </Tabs>
