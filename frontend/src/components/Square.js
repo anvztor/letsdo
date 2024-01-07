@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import UpdateDialogForm from './UpdateDialogForm';
 import AddDialogForm from './AddDialogForm';
 import ProfileAvatar from './ProfileAvatar';
+import QuestCard from './QuestCard';
 
 export default function Square() {
   const categories = [
@@ -24,6 +25,15 @@ export default function Square() {
     'GAME',
     'FAVOUR'
   ]
+  const quests = [
+    {"id":0,"title":"Shot Ball","type":1,"body":"ipfs://***.wasm","args":[{"score":0,"target":10}]},
+    {"id":1,"title":"Make a Pet Feeder","type":1,"body":"ipfs://***","args":[{"score":0,"target":5}]},
+    {"id":2,"title":"Make a Electronic Fruit Music","type":1,"body":"ipfs://***.wasm","args":[{"score":0,"target":5}]},
+    {"id":3,"title":"Make a Chinese Gongbaojiding","type":1,"body":"ipfs://***.html","args":[{"score":0,"target":5}]},
+    {"id":4,"title":"Start a Citywalk around Longxiangqiao","type":1,"body":"ipfs://***","args":[{"score":0,"target":5}]},
+    {"id":5,"title":"Time Limit Shot","type":0,"body":"ipfs://***","args":[{"score":0,"target":5}]}
+  ]
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -57,11 +67,18 @@ export default function Square() {
           </Tabs>
         </Box>
       </Grid>
-      <Box style={{ cursor: 'move', display:'flex' }}>
+      <Stack style={{ cursor: 'move', display:'flex' }}>
         <ListSubheader sx={{ bgcolor: 'background.paper' }}>
           Quests to Be Done
         </ListSubheader>
-      </Box>
+        <Box style={{ cursor: 'move', display:'flex' }}>
+            {
+              quests.map( (quest) => (
+                <QuestCard id={quest.id} title={quest.title} body={quest.body} />
+              ))
+            }
+        </Box>
+      </Stack>
       <Box style={{ cursor: 'move', display:'flex' }}>
         <ListSubheader sx={{ bgcolor: 'background.paper' }}>
           Chips to Be Choosen
